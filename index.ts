@@ -5,7 +5,7 @@ import { SiweMessage } from "siwe";
 
 const domain = window.location.host;
 const origin = window.location.origin;
-const provider = new ethers.providers.Web3Provider(window.ethereum);
+const provider = new ethers.providers.Web3Provider((window as any).ethereum);
 const signer = provider.getSigner();
 
 const BACKEND_ADDR = "http://localhost:3000";
@@ -98,9 +98,9 @@ let signature = null;
 async function signInWithEthereum() {
   const message = await createSiweMessage(
     await signer.getAddress(),
-    "Sign in with Ethereum to the app."
+    "Sign in with Ethereum to the app. 1231231231231231221"
   );
-  const signature = await signer.signMessage(message);
+  const signature = await signer.signMessage("message");
 
   const res = await fetch(`${BACKEND_ADDR}/verify`, {
     method: "POST",
