@@ -1,0 +1,100 @@
+{
+  "abi": [
+    {
+      "gas": 4587,
+      "inputs": [],
+      "name": "apiVersion",
+      "outputs": [{ "name": "", "type": "string" }],
+      "stateMutability": "pure",
+      "type": "function"
+    },
+    {
+      "inputs": [{ "name": "_contract_owner", "type": "address" }],
+      "outputs": [],
+      "stateMutability": "nonpayable",
+      "type": "constructor",
+      "name": "constructor"
+    },
+    {
+      "gas": 131910,
+      "inputs": [
+        { "name": "_platform_signature", "type": "bytes" },
+        { "name": "_buyer_address", "type": "address" },
+
+        { "name": "_seller_signature", "type": "bytes" },
+        { "name": "_buy_orders", "type": "(address,uint256)[3]" },
+        { "name": "_quota_limit", "type": "uint256" },
+        { "name": "_expected_quota", "type": "uint256" },
+        { "name": "_collection_start_time", "type": "uint256" },
+        { "name": "_collection_end_time", "type": "uint256" },
+        { "name": "_total_price", "type": "uint256" }
+      ],
+      "name": "transactNFT",
+      "outputs": [],
+      "stateMutability": "nonpayable",
+      "type": "function"
+    },
+    {
+      "gas": 19300,
+      "inputs": [
+        { "name": "_sellers_signing_account", "type": "address" },
+        { "name": "_signature", "type": "bytes" },
+        { "name": "_seller_address", "type": "address" },
+        { "name": "_seller_ERC20_address", "type": "address" },
+        {
+          "components": [
+            { "name": "addr", "type": "address" },
+            { "name": "erc20_address", "type": "address" },
+            {
+              "name": "erc721_addresses",
+              "type": "(address,uint256,uint256)[3]"
+            }
+          ],
+          "name": "_seller_info",
+          "type": "tuple"
+        }
+      ],
+      "name": "checkSellerSignature",
+      "outputs": [{ "name": "", "type": "bool" }],
+      "stateMutability": "nonpayable",
+      "type": "function"
+    },
+    {
+      "gas": 17540,
+      "inputs": [
+        { "name": "_platform_signing_account", "type": "address" },
+        { "name": "_signature", "type": "bytes" },
+        { "name": "_buyer_address", "type": "address" },
+        { "name": "_seller_signature", "type": "string" }
+      ],
+      "name": "checkPlatformSignature",
+      "outputs": [{ "name": "", "type": "bool" }],
+      "stateMutability": "nonpayable",
+      "type": "function"
+    },
+    {
+      "gas": 1280,
+      "inputs": [],
+      "name": "contract_owner",
+      "outputs": [{ "name": "", "type": "address" }],
+      "stateMutability": "view",
+      "type": "function"
+    },
+    {
+      "gas": 1310,
+      "inputs": [],
+      "name": "DOMAIN_SEPARATOR",
+      "outputs": [{ "name": "", "type": "bytes32" }],
+      "stateMutability": "view",
+      "type": "function"
+    },
+    {
+      "gas": 1606,
+      "inputs": [{ "name": "arg0", "type": "address" }],
+      "name": "buyerToQoutaUsed",
+      "outputs": [{ "name": "", "type": "uint256" }],
+      "stateMutability": "view",
+      "type": "function"
+    }
+  ]
+}

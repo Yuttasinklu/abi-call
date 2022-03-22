@@ -31,6 +31,14 @@ function connectWallet() {
     .catch(() => console.log("user rejected request"));
 }
 
+provider.on("disconnect", function () {
+  console.log("disconnected");
+});
+provider.on("accountsChanged", function () {
+  console.log("changed");
+});
+console.log(provider.getBalance("0x7B3387305E11a10f62eE6c095B220EDEE4960439"));
+// provider.getAccounts()
 // async function signInWithEthereum() {
 //   const message = await createSiweMessage(
 //     await signer.getAddress(),
