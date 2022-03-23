@@ -95,13 +95,8 @@
             { "name": "addr", "type": "address" },
             { "name": "erc20_address", "type": "address" },
             {
-              "components": [
-                { "name": "nrf_address", "type": "address" },
-                { "name": "price", "type": "uint256" },
-                { "name": "weight", "type": "uint256" }
-              ],
               "name": "erc721_addresses",
-              "type": "tuple[]"
+              "type": "(address,uint256,uint256)[3]"
             },
             { "name": "collection_start_time", "type": "uint256" },
             { "name": "collection_end_time", "type": "uint256" }

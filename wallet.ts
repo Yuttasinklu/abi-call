@@ -84,7 +84,7 @@ transactionNFT.addEventListener("click", async function () {
   const { abi } = data;
   let contract = new web3.eth.Contract(
     abi,
-    "0xAEC9A7740aaaB7a3318570C86912dbcaD828F6D9"
+    "0x8858fab3668f6e0143159325790aFaADbCd8141a"
   );
   console.log("********************************");
   console.log("availible", contract.methods);
@@ -148,27 +148,28 @@ transactionNFT.addEventListener("click", async function () {
         "0xe00BCef53DD14AE43963cfdd824e78c1858Ea3a8",
         "0xAEC9A7740aaaB7a3318570C86912dbcaD828F6D9",
         [
-          ["0x06012c8cf97BEaD5deAe237070F9587f8E7A266d", 5, 1],
-          ["0x2d677Dbe16752A066ef83e382DcC04D7003A61Ed", 10, 0],
-          ["0xcdd02E7849CBBfeaF6401cfDc434999ff5fC0f04", 15, 0],
+          ["0xcb9079fc6a8E3020d1b51e29E34d6846c9103427", 5, 1],
+          ["0x016128aA42BbbA55151645D98a69bEE571c318f8", 10, 5],
+          ["0x4a84A9675170DDbC265c2ef7AA18B64a6197229E", 15, 10],
         ],
         1644388771,
         1649999999,
       ],
       "TBD",
       [
-        ["0x06012c8cf97BEaD5deAe237070F9587f8E7A266d", 1],
-        ["0x2d677Dbe16752A066ef83e382DcC04D7003A61Ed", 0],
-        ["0xcdd02E7849CBBfeaF6401cfDc434999ff5fC0f04", 0],
+        ["0xcb9079fc6a8E3020d1b51e29E34d6846c9103427", 1],
+        ["0x016128aA42BbbA55151645D98a69bEE571c318f8", 2],
+        ["0x4a84A9675170DDbC265c2ef7AA18B64a6197229E", 3],
       ],
       50,
-      5,
-      5,
+      41,
+      70,
       1649999999
     )
     .send({
       from: "0x41e86fc092be02aa39B5644FA78255Cac7E2Aed2",
-      gas: 150000,
+      gas: 10000000,
+      gasPrice: web3.utils.toHex(web3.utils.toWei("100", "gwei")),
     });
   console.log("result", result);
 });
