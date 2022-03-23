@@ -20,7 +20,20 @@
       "inputs": [
         { "name": "_platform_signature", "type": "bytes" },
         { "name": "_buyer_address", "type": "address" },
-
+        {
+          "components": [
+            { "name": "addr", "type": "address" },
+            { "name": "erc20_address", "type": "address" },
+            {
+              "name": "erc721_addresses",
+              "type": "(address,uint256,uint256)[3]"
+            }
+          ],
+          "name": "_seller_info",
+          "type": "tuple"
+        },
+        { "name": "_seller_signature", "type": "bytes" },
+        { "name": "_buy_orders", "type": "(address,uint256)[3]" },
         { "name": "_quota_limit", "type": "uint256" },
         { "name": "_expected_quota", "type": "uint256" },
         { "name": "_collection_start_time", "type": "uint256" },
