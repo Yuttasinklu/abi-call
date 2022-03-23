@@ -16,7 +16,7 @@
       "name": "constructor"
     },
     {
-      "gas": 131910,
+      "gas": 138835,
       "inputs": [
         { "name": "_platform_signature", "type": "bytes" },
         { "name": "_buyer_address", "type": "address" },
@@ -25,33 +25,44 @@
             { "name": "addr", "type": "address" },
             { "name": "erc20_address", "type": "address" },
             {
+              "components": [
+                { "name": "nft_address", "type": "address" },
+                { "name": "price", "type": "uint256" },
+                { "name": "weight", "type": "uint256" }
+              ],
               "name": "erc721_addresses",
-              "type": "(address,uint256,uint256)[3]"
-            }
+              "type": "tuple[]"
+            },
+            { "name": "collection_start_time", "type": "uint256" },
+            { "name": "collection_end_time", "type": "uint256" }
           ],
           "name": "_seller_info",
           "type": "tuple"
         },
         { "name": "_seller_signature", "type": "bytes" },
-        { "name": "_buy_orders", "type": "(address,uint256)[3]" },
+        {
+          "components": [
+            { "name": "nft_address", "type": "address" },
+            { "name": "quantity", "type": "uint256" }
+          ],
+          "name": "_buy_orders",
+          "type": "tuple[]"
+        },
         { "name": "_quota_limit", "type": "uint256" },
         { "name": "_expected_quota", "type": "uint256" },
-        { "name": "_collection_start_time", "type": "uint256" },
-        { "name": "_collection_end_time", "type": "uint256" },
-        { "name": "_total_price", "type": "uint256" }
+        { "name": "_total_price", "type": "uint256" },
+        { "name": "_order_expiration", "type": "uint256" }
       ],
       "name": "transactNFT",
       "outputs": [],
-      "stateMutabil ity": "nonpayable",
+      "stateMutability": "nonpayable",
       "type": "function"
     },
     {
-      "gas": 19300,
+      "gas": 12680,
       "inputs": [
         { "name": "_sellers_signing_account", "type": "address" },
         { "name": "_signature", "type": "bytes" },
-        { "name": "_seller_address", "type": "address" },
-        { "name": "_seller_ERC20_address", "type": "address" },
         {
           "components": [
             { "name": "addr", "type": "address" },
@@ -59,24 +70,50 @@
             {
               "name": "erc721_addresses",
               "type": "(address,uint256,uint256)[3]"
-            }
+            },
+            { "name": "collection_start_time", "type": "uint256" },
+            { "name": "collection_end_time", "type": "uint256" }
           ],
           "name": "_seller_info",
           "type": "tuple"
         }
       ],
       "name": "checkSellerSignature",
-      "outputs": [{ "name": "", "type": "bool" }],
+      "outputs": [{ "name": "", "type": "bytes32" }],
       "stateMutability": "nonpayable",
       "type": "function"
     },
     {
-      "gas": 17540,
+      "gas": 17256,
       "inputs": [
         { "name": "_platform_signing_account", "type": "address" },
         { "name": "_signature", "type": "bytes" },
         { "name": "_buyer_address", "type": "address" },
-        { "name": "_seller_signature", "type": "string" }
+        { "name": "_seller_signature", "type": "string" },
+        {
+          "components": [
+            { "name": "addr", "type": "address" },
+            { "name": "erc20_address", "type": "address" },
+            {
+              "components": [
+                { "name": "nrf_address", "type": "address" },
+                { "name": "price", "type": "uint256" },
+                { "name": "weight", "type": "uint256" }
+              ],
+              "name": "erc721_addresses",
+              "type": "tuple[]"
+            },
+            { "name": "collection_start_time", "type": "uint256" },
+            { "name": "collection_end_time", "type": "uint256" }
+          ],
+          "name": "_seller_info",
+          "type": "tuple"
+        },
+        { "name": "_buy_orders", "type": "(address,uint256)[3]" },
+        { "name": "_quota_limit", "type": "uint256" },
+        { "name": "_expected_quota", "type": "uint256" },
+        { "name": "_total_price", "type": "uint256" },
+        { "name": "_order_expiration", "type": "uint256" }
       ],
       "name": "checkPlatformSignature",
       "outputs": [{ "name": "", "type": "bool" }],
@@ -102,7 +139,7 @@
     {
       "gas": 1606,
       "inputs": [{ "name": "arg0", "type": "address" }],
-      "name": "buyerToQoutaUsed",
+      "name": "buyerToQuotaUsed",
       "outputs": [{ "name": "", "type": "uint256" }],
       "stateMutability": "view",
       "type": "function"
