@@ -21,8 +21,6 @@
         { "name": "_platform_signature", "type": "bytes" },
         { "name": "_buyer_address", "type": "address" },
 
-        { "name": "_seller_signature", "type": "bytes" },
-        { "name": "_buy_orders", "type": "(address,uint256)[3]" },
         { "name": "_quota_limit", "type": "uint256" },
         { "name": "_expected_quota", "type": "uint256" },
         { "name": "_collection_start_time", "type": "uint256" },
@@ -31,7 +29,7 @@
       ],
       "name": "transactNFT",
       "outputs": [],
-      "stateMutability": "nonpayable",
+      "stateMutabil ity": "nonpayable",
       "type": "function"
     },
     {

@@ -94,6 +94,7 @@ transactionNFT.addEventListener("click", async function () {
     {"wallet":"0x3c9247aa807884d1E363359989398B987746F676","quantity":1},\
     {"wallet":"0x8862397D117B42E43F7dB223F3408FB13EE89f60","quantity":1}]'
   );
+  const wallet = "0x8862397D117B42E43F7dB223F3408FB13EE89f60";
   console.log("parsed", parsed);
   var a = [];
   for (var i = 0; i < parsed.length; i++) {
@@ -102,27 +103,53 @@ transactionNFT.addEventListener("click", async function () {
   }
   const myparam = "";
   console.log("A", a);
+  console.log(
+    typeof [
+      ["0x294201c4aFb976824cEF3428564FE750ba07EAF8", 1],
+      ["0x3c9247aa807884d1E363359989398B987746F676", 1],
+      ["0x8862397D117B42E43F7dB223F3408FB13EE89f60", 1],
+    ]
+  );
+  // {
+  //   "components": [
+  //     { "name": "addr", "type": "address" },
+  //     { "name": "erc20_address", "type": "address" },
+  //     {
+  //       "name": "erc721_addresses",
+  //       "type": "(address,uint256,uint256)[3]"
+  //     }
+  //   ],
+  //   "name": "_seller_info",
+  //   "type": "tuple"
+  // },
+  // { "name": "_seller_signature", "type": "bytes" },
+  // { "name": "_buy_orders", "type": "(address,uint256)[3]" },
+
   const result = await contract.methods
     .transactNFT(
       "TBD",
       "0x94Ac3ed3b60C3262EFD35498D98b39402B317912",
       // "(0x94Ac3ed3b60C3262EFD35498D98b39402B317912,2,3)",
       // [
-      // ["0x294201c4aFb976824cEF3428564FE750ba07EAF8", 5, 1],
-      // ["0x3c9247aa807884d1E363359989398B987746F676", 10, 1],
-      // ["0x8862397D117B42E43F7dB223F3408FB13EE89f60", 15, 1],
+      //   "0x3c9247aa807884d1E363359989398B987746F676",
+      //   "0x294201c4aFb976824cEF3428564FE750ba07EAF8",
+      //   [
+      //     ["0x94Ac3ed3b60C3262EFD35498D98b39402B317912", 5, 2],
+      //     ["0x94Ac3ed3b60C3262EFD35498D98b39402B317912", 10, 2],
+      //     ["0x94Ac3ed3b60C3262EFD35498D98b39402B317912", 15, 2],
+      //   ],
       // ],
-      "seller signature",
-      [
-        ["0x294201c4aFb976824cEF3428564FE750ba07EAF8", 1],
-        ["0x3c9247aa807884d1E363359989398B987746F676", 1],
-        ["0x8862397D117B42E43F7dB223F3408FB13EE89f60", 1],
-      ],
-      "50",
-      "30",
-      "1644388771",
-      "1649999999",
-      "70"
+      // "seller signature",
+      // [
+      //   ["0x294201c4aFb976824cEF3428564FE750ba07EAF8", 1],
+      //   ["0x3c9247aa807884d1E363359989398B987746F676", 1],
+      //   ["0x8862397D117B42E43F7dB223F3408FB13EE89f60", 1],
+      // ],
+      50,
+      30,
+      1644388771,
+      1649999999,
+      70
     )
     .send({ from: "0x94Ac3ed3b60C3262EFD35498D98b39402B317912" });
   console.log("result", result);
