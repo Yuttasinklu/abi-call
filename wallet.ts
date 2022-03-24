@@ -1,5 +1,8 @@
 import { ethers } from "ethers";
 import * as data from "./abi.json";
+import * as abc from "./mockabi.json";
+import * as cons from "./contract.json";
+import * as abiOri from "./abiOriginal.json";
 
 var Web3 = require("web3");
 
@@ -14,18 +17,18 @@ const showAccount = document.getElementById("showAccount");
 const provider = new ethers.providers.Web3Provider((window as any).ethereum);
 
 // const signTransactionButton = document.getElementById("signTransaction");
-// const sendTransactionButton = document.getElementById("sendTransaction");
+const sendTransactionButton = document.getElementById("sendTransaction");
 
-// const transactionobj = {
-//   from: "0x7B3387305E11a10f62eE6c095B220EDEE4960439",
-//   to: "0x7B3387305E11a10f62eE6c095B220EDEE4960439",
-//   value: "1000000000000000",
-// };
-// sendTransactionButton.addEventListener("click", async function (params) {
-//   console.log("send transaction clicked");
-//   const result = await web3.eth.sendTransaction(transactionobj);
-//   console.log(result);
-// });
+const transactionobj = {
+  from: "0x41e86fc092be02aa39B5644FA78255Cac7E2Aed2",
+  to: "0xe00BCef53DD14AE43963cfdd824e78c1858Ea3a8",
+  value: "1000000000000000000",
+};
+sendTransactionButton.addEventListener("click", async function (params) {
+  console.log("send transaction clicked");
+  const result = await web3.eth.sendTransaction(transactionobj);
+  console.log(result);
+});
 
 const buyerToQoutaUsed = document.getElementById("abi");
 buyerToQoutaUsed.addEventListener("click", async function () {
@@ -34,8 +37,6 @@ buyerToQoutaUsed.addEventListener("click", async function () {
     abi,
     "0x22D126A4C30BeB08F569172073116cf1EF6814B8"
   );
-  // console.log("abi", abi);
-  // console.log("contract", contract);
   console.log("********************************");
   console.log("availible", contract.methods);
   console.log("*****************************`");
@@ -43,11 +44,60 @@ buyerToQoutaUsed.addEventListener("click", async function () {
     .buyerToQuotaUsed("0x41e86fc092be02aa39B5644FA78255Cac7E2Aed2")
     .call();
   console.log("result", result);
-
-  // .send({ from: "0x41e86fc092be02aa39B5644FA78255Cac7E2Aed2" });
-  // console.log("result", result);
 });
 
+const approveButton = document.getElementById("approve");
+approveButton.addEventListener("click", async function () {
+  const { abi } = cons;
+  let erc = new web3.eth.Contract(
+    abi,
+    "0xAEC9A7740aaaB7a3318570C86912dbcaD828F6D9"
+  );
+  console.log("hi", erc);
+  console.log("availible", erc.methods);
+  const result = await erc.methods
+    .approve("0xAEC9A7740aaaB7a3318570C86912dbcaD828F6D9", 10000)
+    .send({
+      from: "0x41e86fc092be02aa39B5644FA78255Cac7E2Aed2",
+      gas: 210000,
+      gasPrice: web3.utils.toHex(web3.utils.toWei("100", "gwei")),
+    });
+
+  console.log("ie", result);
+});
+
+const allowanceButtonn = document.getElementById("allowance");
+allowanceButtonn.addEventListener("click", async function () {
+  const { abi } = cons;
+  let erc = new web3.eth.Contract(
+    abi,
+    "0xAEC9A7740aaaB7a3318570C86912dbcaD828F6D9"
+  );
+  console.log("hi", erc);
+  console.log("availible", erc.methods);
+  const result = await erc.methods
+    .balanceOf("0x41e86fc092be02aa39B5644FA78255Cac7E2Aed2")
+    .call();
+  console.log(result);
+
+  const symbol = await erc.methods.symbol().call();
+  console.log("sym", symbol);
+});
+
+const constructorButton = document.getElementById("constructor");
+constructorButton.addEventListener("click", async function () {
+  const { abi } = data;
+  let erc = new web3.eth.Contract(
+    abi,
+    "0x8858fab3668f6e0143159325790aFaADbCd8141a"
+  );
+  console.log("hi", erc);
+  console.log("availible", erc.methods);
+  const result = await erc.methods
+    .DOMAIN_SEPARATOR()
+    .send({ from: "0x41e86fc092be02aa39B5644FA78255Cac7E2Aed2" });
+  console.log(result);
+});
 /*
 (\
       0x3c9247aa807884d1E363359989398B987746F676,\
@@ -82,33 +132,26 @@ buyerToQoutaUsed.addEventListener("click", async function () {
 const transactionNFT = document.getElementById("transactionNft");
 transactionNFT.addEventListener("click", async function () {
   const { abi } = data;
-  let contract = new web3.eth.Contract(
-    abi,
-    "0x8858fab3668f6e0143159325790aFaADbCd8141a"
-  );
-  console.log("********************************");
-  console.log("availible", contract.methods);
-  console.log("*****************************`");
-  let parsed = JSON.parse(
-    '[{"wallet" : "0x294201c4aFb976824cEF3428564FE750ba07EAF8", "quantity":1},\
-    {"wallet":"0x3c9247aa807884d1E363359989398B987746F676","quantity":1},\
-    {"wallet":"0x8862397D117B42E43F7dB223F3408FB13EE89f60","quantity":1}]'
-  );
-  const wallet = "0x8862397D117B42E43F7dB223F3408FB13EE89f60";
-  console.log("parsed", parsed);
-  var a = [];
-  for (var i = 0; i < parsed.length; i++) {
-    var person = [parsed[i].wallet, parsed[i].quantity];
-    a.push(person);
-  }
-  console.log("A", a);
-  console.log(
-    typeof [
-      ["0x294201c4aFb976824cEF3428564FE750ba07EAF8", 1],
-      ["0x3c9247aa807884d1E363359989398B987746F676", 1],
-      ["0x8862397D117B42E43F7dB223F3408FB13EE89f60", 1],
-    ]
-  );
+  // let parsed = JSON.parse(
+  //   '[{"wallet" : "0x294201c4aFb976824cEF3428564FE750ba07EAF8", "quantity":1},\
+  //   {"wallet":"0x3c9247aa807884d1E363359989398B987746F676","quantity":1},\
+  //   {"wallet":"0x8862397D117B42E43F7dB223F3408FB13EE89f60","quantity":1}]'
+  // );
+  // const wallet = "0x8862397D117B42E43F7dB223F3408FB13EE89f60";
+  // console.log("parsed", parsed);
+  // var a = [];
+  // for (var i = 0; i < parsed.length; i++) {
+  //   var person = [parsed[i].wallet, parsed[i].quantity];
+  //   a.push(person);
+  // }
+  // console.log("A", a);
+  // console.log(
+  //   typeof [
+  //     ["0x294201c4aFb976824cEF3428564FE750ba07EAF8", 1],
+  //     ["0x3c9247aa807884d1E363359989398B987746F676", 1],
+  //     ["0x8862397D117B42E43F7dB223F3408FB13EE89f60", 1],
+  //   ]
+  // );
   // {
   //   "components": [
   //     { "name": "addr", "type": "address" },
@@ -140,9 +183,19 @@ transactionNFT.addEventListener("click", async function () {
           ["0x3c9247aa807884d1E363359989398B987746F676", 10, 0],
           ["0x8862397D117B42E43F7dB223F3408FB13EE89f60", 15, 0],
   */
+  let contract = new web3.eth.Contract(
+    abi,
+    "0x8858fab3668f6e0143159325790aFaADbCd8141a"
+  );
+  console.log(contract);
+  console.log("********************************");
+  console.log("availible", contract.methods);
+  console.log("*****************************`");
+  console.log(abi);
+  console.log(contract);
   const result = await contract.methods
     .transactNFT(
-      "TBD",
+      "0x016128a",
       "0x41e86fc092be02aa39B5644FA78255Cac7E2Aed2",
       [
         "0xe00BCef53DD14AE43963cfdd824e78c1858Ea3a8",
@@ -155,7 +208,7 @@ transactionNFT.addEventListener("click", async function () {
         1644388771,
         1649999999,
       ],
-      "TBD",
+      "0x016128a",
       [
         ["0xcb9079fc6a8E3020d1b51e29E34d6846c9103427", 1],
         ["0x016128aA42BbbA55151645D98a69bEE571c318f8", 2],
@@ -168,10 +221,25 @@ transactionNFT.addEventListener("click", async function () {
     )
     .send({
       from: "0x41e86fc092be02aa39B5644FA78255Cac7E2Aed2",
-      gas: 10000000,
       gasPrice: web3.utils.toHex(web3.utils.toWei("100", "gwei")),
     });
   console.log("result", result);
+});
+
+const mocktranButton = document.getElementById("mocktran");
+mocktranButton.addEventListener("click", async function () {
+  const { abi } = abc;
+  let contract = new web3.eth.Contract(
+    abi,
+    "0x39df1a1e095b8a79199494143a5885842593ed23"
+  );
+  const result = await contract.methods
+    .giveRightToVote([
+      [55, false],
+      [55, false],
+      [55, false],
+    ])
+    .send({ from: "0x41e86fc092be02aa39B5644FA78255Cac7E2Aed2" });
 });
 
 let params = {

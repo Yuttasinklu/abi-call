@@ -1,0 +1,22 @@
+{
+  "abi": [
+    {
+      "inputs": [],
+      "stateMutability": "nonpayable",
+      "type": "constructor"
+    },
+    {
+      "inputs": [
+        {
+          "internalType": "struct Ballot.Voter[3]",
+          "name": "voter",
+          "type": "(uint256,bool),(uint256,bool),(uint256,bool)"
+        }
+      ],
+      "name": "giveRightToVote",
+      "outputs": [],
+      "stateMutability": "nonpayable",
+      "type": "function"
+    }
+  ]
+}
